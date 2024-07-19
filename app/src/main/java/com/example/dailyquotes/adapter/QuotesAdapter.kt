@@ -18,9 +18,9 @@ class QuotesAdapter(private val quotes: List<Quote>,
     inner class QuoteViewHolder(private val binding: QuotesLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        val quotes_copy: ImageView = itemView.findViewById(R.id.quotes_copy)
-        val quotes_fav: ImageView = itemView.findViewById(R.id.quotes_fav)
-        val quotes_share: ImageView = itemView.findViewById(R.id.quotes_share)
+        val quotes_copy: ImageView = binding.quotesCopy
+        val quotes_fav: ImageView = binding.quotesFav
+        val quotes_share: ImageView = binding.quotesShare
         private val layout: ConstraintLayout = itemView.findViewById(R.id.quotesFragmentLayout)
 
 
@@ -43,6 +43,7 @@ class QuotesAdapter(private val quotes: List<Quote>,
             }
             quotes_share.setOnClickListener {
                 onShare.invoke(quote.q)
+            //    onShare(quote.q)
             }
 
 

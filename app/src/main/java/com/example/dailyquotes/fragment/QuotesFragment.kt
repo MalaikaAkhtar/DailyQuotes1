@@ -16,7 +16,7 @@ import com.example.dailyquotes.R
 import com.example.dailyquotes.dataclass.Quote
 import com.example.dailyquotes.adapter.QuotesAdapter
 import com.example.dailyquotes.databinding.FragmentQuotesBinding
-import com.example.dailyquotes.viewModel.QuotesViewModel
+import com.example.dailyquotes.viewmodel.QuotesViewModel
 
 
 class QuotesFragment : Fragment() {
@@ -24,6 +24,7 @@ class QuotesFragment : Fragment() {
     private lateinit var viewModel: QuotesViewModel
     private var selectedTheme: Int = R.drawable.quotes
     private lateinit var viewPager: ViewPager2
+    private val activityContext by lazy { requireActivity() }
 
 
     override fun onCreateView(
@@ -31,7 +32,7 @@ class QuotesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentQuotesBinding.inflate(inflater, container, false)
-        viewModel = ViewModelProvider(requireActivity()).get(QuotesViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity())[QuotesViewModel::class.java]
 
         observeViewModel()
         selectedTheme = applySelectedTheme()
@@ -89,9 +90,8 @@ class QuotesFragment : Fragment() {
     }
 
     private fun applySelectedTheme(): Int {
-        val sharedPreferences = requireActivity().getSharedPreferences("ThemePrefs", Context.MODE_PRIVATE)
-        val selectedTheme = sharedPreferences.getString("selected_theme", "default_theme")
-        return when (selectedTheme) {
+        val sharedPreferences = activityContext.getSharedPreferences("ThemePrefs", Context.MODE_PRIVATE)
+        return when (sharedPreferences.getString("selected_theme", "default_theme")) {
             "pink_theme" -> R.drawable.pink_theme
             "blue_theme" -> R.drawable.blue_theme
             "green_theme" -> R.drawable.green_theme
@@ -107,44 +107,3 @@ class QuotesFragment : Fragment() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//    private fun getQuote() {
-//        setInProgress(true)
-//        lifecycleScope.launch {
-//            try {
-//                val response = RetrofitInstance.quoteApi.getRandomQuotes()
-//                if (response.isSuccessful && response.body() != null) {
-//                    response.body()?.let { quotes ->
-//                        setUI(quotes)
-//                    }
-//                } else {
-//                    Log.e("QuotesFragment", "Failed to fetch quotes: ${response.errorBody()}")
-//                }
-//
-//            } catch (e: Exception) {
-//                requireActivity().runOnUiThread {
-//                    Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show()
-//                }
-//            }finally{
-//                setInProgress(false)
-//            }
-//        }
-//    }

@@ -1,4 +1,4 @@
-package com.example.dailyquotes.viewModel
+package com.example.dailyquotes.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -6,8 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.dailyquotes.dataclass.Quote
-import com.example.dailyquotes.retrofitInstance.QuotesApiService
-import com.example.dailyquotes.retrofitInstance.RetrofitInstance
+import com.example.dailyquotes.retrofitinstance.QuotesApiService
+import com.example.dailyquotes.retrofitinstance.RetrofitInstance
 import kotlinx.coroutines.launch
 
 class QuotesViewModel : ViewModel() {

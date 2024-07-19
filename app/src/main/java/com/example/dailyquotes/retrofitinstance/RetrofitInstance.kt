@@ -1,4 +1,4 @@
-package com.example.dailyquotes.retrofitInstance
+package com.example.dailyquotes.retrofitinstance
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.example.dailyquotes.adapter.FavoriteAdapter
 import com.example.dailyquotes.databinding.FragmentFavoriteBinding
-import com.example.dailyquotes.viewModel.QuotesViewModel
+import com.example.dailyquotes.viewmodel.QuotesViewModel
 
 class FavoriteFragment : Fragment() {
 
@@ -22,9 +22,9 @@ class FavoriteFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentFavoriteBinding.inflate(inflater,container,false)
-        viewModel = ViewModelProvider(requireActivity()).get(QuotesViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity())[QuotesViewModel::class.java]
         return (binding.root)
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

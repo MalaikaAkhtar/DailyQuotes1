@@ -14,11 +14,12 @@ import com.example.dailyquotes.databinding.FragmentSettingsBinding
 
 class SettingsFragment : Fragment() {
 
+    private val activityContext by lazy { requireActivity() }
     private lateinit var binding: FragmentSettingsBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentSettingsBinding.inflate(inflater,container,false)
         setupThemeChangeListeners()
 
@@ -71,7 +72,7 @@ class SettingsFragment : Fragment() {
     }
 
     private fun saveTheme(theme: String) {
-        val sharedPreferences = requireActivity().getSharedPreferences("ThemePrefs", Context.MODE_PRIVATE)
+        val sharedPreferences = activityContext.getSharedPreferences("ThemePrefs", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         editor.putString("selected_theme", theme)
         editor.apply()

@@ -8,10 +8,12 @@
     tools:context=".activity.MainActivity">
 
     <FrameLayout
+        android:id="@+id/frameContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/frameContainer"/>
-    
+        tools:layout_editor_absoluteX="31dp"
+        tools:layout_editor_absoluteY="147dp" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
