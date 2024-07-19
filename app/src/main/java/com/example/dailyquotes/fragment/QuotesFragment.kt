@@ -15,6 +15,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.dailyquotes.R
 import com.example.dailyquotes.dataclass.Quote
 import com.example.dailyquotes.adapter.QuotesAdapter
+import com.example.dailyquotes.constant.Constants
 import com.example.dailyquotes.databinding.FragmentQuotesBinding
 import com.example.dailyquotes.viewmodel.QuotesViewModel
 
@@ -24,7 +25,6 @@ class QuotesFragment : Fragment() {
     private lateinit var viewModel: QuotesViewModel
     private var selectedTheme: Int = R.drawable.quotes
     private lateinit var viewPager: ViewPager2
-    private val activityContext by lazy { requireActivity() }
 
 
     override fun onCreateView(
@@ -90,8 +90,8 @@ class QuotesFragment : Fragment() {
     }
 
     private fun applySelectedTheme(): Int {
-        val sharedPreferences = activityContext.getSharedPreferences("ThemePrefs", Context.MODE_PRIVATE)
-        return when (sharedPreferences.getString("selected_theme", "default_theme")) {
+        val sharedPreferences = requireActivity().getSharedPreferences(Constants.THEME_PREFS, Context.MODE_PRIVATE)
+        return when (sharedPreferences.getString(Constants.SELECTED_THEME, Constants.DEFAULT_THEME)) {
             "pink_theme" -> R.drawable.pink_theme
             "blue_theme" -> R.drawable.blue_theme
             "green_theme" -> R.drawable.green_theme

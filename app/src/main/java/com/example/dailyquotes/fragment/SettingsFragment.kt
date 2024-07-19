@@ -9,12 +9,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.example.dailyquotes.constant.Constants
 import com.example.dailyquotes.databinding.FragmentSettingsBinding
 
 
 class SettingsFragment : Fragment() {
 
-    private val activityContext by lazy { requireActivity() }
     private lateinit var binding: FragmentSettingsBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -72,7 +72,7 @@ class SettingsFragment : Fragment() {
     }
 
     private fun saveTheme(theme: String) {
-        val sharedPreferences = activityContext.getSharedPreferences("ThemePrefs", Context.MODE_PRIVATE)
+        val sharedPreferences = requireActivity().getSharedPreferences(Constants.THEME_PREFS, Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         editor.putString("selected_theme", theme)
         editor.apply()
